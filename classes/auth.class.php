@@ -16,12 +16,12 @@ class auth extends connection{
             //Datos Correctos
             $user = $data['user'];
             $password = $data['password'];
-            $password = parent::encrypt($password);
+            /* $password = parent::encrypt($password); */
             $data = $this->getDataUser($user);
             if($data){
                 //verificar si la contraseña es igual
                     if($password == $data[0]['userpassword']){
-                            if($data[0]['login'] == "1"){
+                            if($data[0]['loginpermission'] == "1"){
                                 //crear el token
                                 $check  = $this->token($data[0]['userid']);
                                 if($check){
@@ -66,7 +66,7 @@ class auth extends connection{
         $token = bin2hex(openssl_random_pseudo_bytes(16,$val));
         $date = date("Y-m-d H:i");
         $status = "active";
-        $query = "INSERT INTO usuarios_token(user_id,token,status,date)VALUES('$userid','$token','$status','$date')";
+        $query = "INSERT INTO users_token(user_id,token,status,date)VALUES('$userid','$token','$status','$date')";
         $check = parent::nonQuery($query);
         if($check){
             return $token;

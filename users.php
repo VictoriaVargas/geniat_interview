@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
         header("Content-Type: application/json");
         echo json_encode($listUsers);
         http_response_code(200);
-    }else if(isset($_GET['id'])){
-        $userid = $_GET['id'];
+    }else if(isset($_GET['userid'])){
+        $userid = $_GET['userid'];
         $dataUser = $_users->getUser($userid);
         header("Content-Type: application/json");
         echo json_encode($dataUser);

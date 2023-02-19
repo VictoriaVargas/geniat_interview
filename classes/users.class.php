@@ -22,7 +22,7 @@ class users extends connection {
             $start = ($count * ($count - 1)) +1 ;
             $count = $count * $page;
         }
-        $query = "SELECT * FROM " . $this->table2 . " limit $start,$count";
+        $query = "SELECT * FROM " . $this->table2 . "";
         $data = parent::selectData($query);
         return ($data);
     }
